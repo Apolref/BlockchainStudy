@@ -22,7 +22,7 @@ contract Variables {
     enum State { Created, Locked, Inactive }
     State public state;
 
-    event added(uint value);
+    event Added(uint value);
 
     // public, internal, external, private
     function getGreeting() public returns (string memory) {
@@ -38,13 +38,14 @@ contract Variables {
         return _a + _b;
     }
 
-    function getNameView() public view returns (string memory) {
-        return name;
+    function addWithEvent(uint _a, uint _b) public returns (uint) {
+        uint _c = _a + _b;
+        emit Added(_c);
+        return _c;
     }
 
-    function addWithEvent(uint _a, uint _b) public returns (uint) {
-        uint _result = _a + _b;
-        emit added(_result);
+    function getNameView() public view returns (string memory) {
+        return name;
     }
 
     modifier onlyOwner() {
